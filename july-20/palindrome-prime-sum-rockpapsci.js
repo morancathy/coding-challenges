@@ -9,8 +9,8 @@
 //##########################################################################
 console.log(`Palindrome Check`)
  // Palindrome
- const checkPalindrome = (param) => {
-   const str = param.toLowerCase();
+ const checkPalindrome = (string) => {
+   const str = string.toLowerCase();
 
    for(let i = 0; i < str.length; i++) {
      if (str[i] !== str[(str.length-1)-i]) {
@@ -29,6 +29,7 @@ console.log(`${strToCheck2} is a palindrome: ${checkPalindrome(strToCheck2)}.`);
 //##########################################################################
 console.log(`\nSum of An Array`)
 // Sum Array
+// My solution
 const sumArray = (array) => {
   let sum = 0;
 
@@ -42,6 +43,13 @@ let myArray2 = [6, 2, 1];
 
 console.log(`The sum of the array [${myArray}] equals ${sumArray(myArray)}.`);
 console.log(`The sum of the array [${myArray2}] equals ${sumArray(myArray2)}.`);
+
+// Teo's suggested solution
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+
+console.log(`\nThe sum of the array [${myArray}] equals ${myArray.reduce(reducer)}.`);
+console.log(`The sum of the array [${myArray2}] equals ${myArray2.reduce(reducer)}.`);
+console.log(`The sum of the array [${myArray2}], plus passed in argument of 5 equals ${myArray2.reduce(reducer, 5)}.`);
 
 //##########################################################################
 console.log(`\nPrime Number Check`)
@@ -101,7 +109,7 @@ const randomMove = () => {
 };
 
 // function plays one round of game, determining winner
-const rockPaperScissors = (move1, move2) => {
+const rockPaperScissors = () => {
 
   let userMove = randomMove();
   let computerMove = randomMove();

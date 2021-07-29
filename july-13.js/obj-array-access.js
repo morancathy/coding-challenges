@@ -147,3 +147,6 @@ console.log('$',gross)
 // }
 //
 // console.log(bondFilms[0]['actor'])
+
+// let actor  = bondFilms.actor.filter(actor => actor.length > 2)
+// console.log(actor)
