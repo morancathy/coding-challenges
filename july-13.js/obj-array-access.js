@@ -150,3 +150,36 @@ console.log('$',gross)
 
 // let actor  = bondFilms.actor.filter(actor => actor.length > 2)
 // console.log(actor)
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Look Up Profile
+const contacts = [
+  {
+    "firstName": "Harry",
+    "lastName": "Potter",
+    "number": "02934",
+    "likes": ["Hogwarts", "Magic", "Hagird"]
+  },
+  {
+    "firstName": "Akira",
+    "lastName": "Mira",
+    "number": "02934",
+    "likes": ["Dogs", "Cats", "Mice"]
+  }
+]
+
+function lookUpProfile(name, prop) {
+  for(let i = 0; i < contacts.length; i++) {
+    //check if name is a name in this list
+    if(contacts[i].firstName === name) {
+      return contacts[i][prop] || "No such property"
+    }
+  }
+  return "No such contact"
+};
+
+const data = lookUpProfile("Akira", "likes");
+
+console.log(`\n LookUp Profile: ${data}`)
