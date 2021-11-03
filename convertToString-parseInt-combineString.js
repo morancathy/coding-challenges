@@ -15,8 +15,10 @@ console.log("Numbers turned to String:", convertToString(1, 6, 2));
 const convertToInteger = (str) => {
 
   return parseInt(str)
+
  };
 console.log("Convert to Integer", convertToInteger("56"));
+console.log("Type of: ", typeof convertToInteger("56"))
 
 // using parseInt with a Radix. specifies the base of the number in the string.
 //Base 2 is binary. Default  is base 10
