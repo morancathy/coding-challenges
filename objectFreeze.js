@@ -1,3 +1,5 @@
+// prevents changing of a const varilable
+
 function freezeObj() {
   "use strict"
   const MATH_CONSTANTS = {
