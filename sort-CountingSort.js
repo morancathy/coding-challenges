@@ -16,3 +16,25 @@ function countingSort(arr) {
 
 let sortedArr = countingSort([1,2,3,4,4,3,2,1])
 console.log(sortedArr)
+
+///////////////////////////////////////////////////
+// Sorting numbers  (so 66 and 6 aren't next to each other)
+
+function sortAccend (array) {
+    let arrayAccend = array.sort((function(a,b){return a-b}))
+    console.log("accending array", arrayAccend)
+    console.log("lowest num in array", arrayAccend[0])
+}
+
+sortAccend([1,6,7, 66, 18])
+
+
+function sortDecend (array) {
+    let arrayDecend = array.sort((function(a,b){return b-a}))
+    console.log("decending array", arrayDecend)
+    console.log("highest num in array", arrayDecend[0])
+}
+
+sortDecend([1,6,7, 66, 18])
+
+//////////////////////////////////////////////////
