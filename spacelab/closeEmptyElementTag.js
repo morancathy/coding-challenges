@@ -70,7 +70,7 @@ function searchForEmptyElement(originalStr){
       finalString = updatedStr + str
 
        // set string to evaluate
-      str = updatedStr
+      str = finalString
 
        // reset
       updatedStr = ""
