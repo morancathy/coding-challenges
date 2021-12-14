@@ -1,105 +1,70 @@
-const emptyElements = [
-  "<area",
-  "<base",
-  "<br",
-  "<col",
-  "<embed",
-  "<hr",
-  "<img",
-  "<input",
-  "<keygen",
-  "<link",
-  "<meta",
-  "<param",
-  "<source",
-  "<track",
-  "<wbr"
-]
+/* Parses html string and finds unclosed empty or void elements, and closes them.
+* @param htmlString
+* @returns {string}
+*/
+let sentence = '<div><img asdfaksdc><img ><link asdf></div><img/>'
 
-let sentence = `<div> <img img tag number 1><link link tag number 1><img img tag num 2 >`
+export const searchForEmptyElement = (htmlString) => {
+    const emptyElements = [
+        "<area", "<base", "<br", "<col", "<embed", "<hr", "<img", "<input", "<keygen", "<link", "<meta", "<param", "<source", "<track", "<wbr"
+    ];
+    let updatedStr = "";   // string evaluated
+    let strEnd = "";   //seperates end string not yet evaluated
+    let finalString = "";
 
-let sentence1 = `<img i'm already closed image tag/><img not closed img tag>`
+    for (let i = 0; i < emptyElements.length; i++) {
+        let beforeElement = "";
+        let afterElement = "";
 
-let strEnd = ""
+        //loops through elements, searching for match in string
+        let result = emptyElements.some(htmlString => htmlString.includes(emptyElements[i])); //true or false
+        //index of element in original string
+        let index = htmlString.indexOf(emptyElements[i]);
 
-console.log("END RESULT:........ ", searchForEmptyElement(sentence))
-console.log("END RESULT Test 2:........ ",searchForEmptyElement(sentence1))
+        //if found element, separate string so to find next closing tag
+        if (result === true) {
+            let foundElement = emptyElements[i];
 
-/********************************************************************************
-Fuction to search for emptyElement                                             */
+            //loops through string, searching for match of found element
+            while (index !== -1) {
+                //index of element in new string
+                let newIndex = htmlString.indexOf(foundElement);
 
-function searchForEmptyElement(originalStr){
-  let str = originalStr  // string to evaluate
-  let updatedStr = ""    // string evaluated
-  let finalString = ""
+                afterElement =  htmlString.substring(newIndex);
+                beforeElement = htmlString.substring(0, newIndex);
 
-   for(let i = 0; i < emptyElements.length; i++){
+                // determine if element is closed, find corresponding closing tag after empty element
+                let [start, ...end] = afterElement.split('>');
+                 //separates rest of string, and sets that as next string to evaluate
+                strEnd = end.join(">");
+                // if closing tag is not closed, add "/"
+                if (start[start.length - 1] !== "/") {
+                    afterElement = `${start}/>`;
+                // else return original string
+                } else {
+                    afterElement = `${start}>`;
+                }
 
-    let beforeElement = ""
-    let afterElement = ""
+                //check for multiples of same tag
+                index = htmlString.indexOf(emptyElements[i], index + 1);
 
-    //loops through elements, searching for match in string
-    let result = emptyElements.some(w => str.includes(emptyElements[i])) //true or false
+                //set evaluated string
+                updatedStr = updatedStr + beforeElement + afterElement;
 
-    let index = originalStr.indexOf(emptyElements[i])  //index of element in orignal string
+                // set string to evaluate
+                htmlString = strEnd;
+            }
+            // set final string after closing element tags
+            finalString = updatedStr + htmlString;
 
-    //if found element, seperate string so to find next closing tag
-    if(result === true){
-      let foundElement = emptyElements[i]
+            // set string to evaluate
+            htmlString = finalString;
 
-      //loops through string, searching for match of found element
-      while (index !== -1) {
-
-        let newIndex = str.indexOf(foundElement)  //index of element in new string
-
-        afterElement =  str.substring(newIndex)
-        beforeElement = str.substring(0, newIndex)
-
-        // Fuction to determine if element is closed
-        afterElement = isTagClosed(afterElement)
-
-        index = originalStr.indexOf(emptyElements[i], index + 1)   //allows us to check for multiples of same tag
-
-        //set evaluated string
-        updatedStr = updatedStr + beforeElement + afterElement
-
-        // set string to evaluate
-        str = strEnd
-      }
-      // set final string after closing element tags
-      finalString = updatedStr + str
-
-       // set string to evaluate
-      str = finalString
-
-       // reset
-      updatedStr = ""
+            // reset
+            updatedStr = "";
+        }
     }
-  }
-
-  return finalString
+  return finalString;
 }
-/********************************************************************************/
 
-/********************************************************************************
-Fuction to determine if element is closed                                      */
-
-function isTagClosed(elementStr){
-  //find the cooresponding closing tag after the empty element
-  let [start, ...end] = elementStr.split('>');
-  end = end.join(">");  //prevents proceeding closing tags from being deleted
-  strEnd = end
-  // str = end
-
-  // if closing tag is not closed, add "/"
-  if(start[start.length - 1] !== "/"){
-    console.log("CLOSING THE TAG:  ", `${start}/>`)
-
-    return `${start}/>`
-  // else return original string
-  } else {
-    console.log("element already closed")
-    return `${start}>`
-  }
-}
-/********************************************************************************/
+console.log(searchForEmptyElement(sentence))
