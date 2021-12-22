@@ -1,5 +1,5 @@
 /* Parses html string and finds unclosed empty or void elements, and closes them.
-* @param htmlString
+* @param htmlStringJ
 * @returns {string}
 */
 let sentence = '<div><img asdfaksdc><img ><link asdf></div><img/>'
