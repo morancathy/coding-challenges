@@ -20,3 +20,13 @@ let word2 = 'SkySkySky';
 console.log(`Num of vowels in ${word}: ${vowels(word)}`) //should output 6
 console.log(`Num of vowels in ${word1}: ${vowels(word1)}`) //should output 5
 console.log(`Num of vowels in ${word2}: ${vowels(word2)}`) //should output 0
+////////////////////////////////////////////////////////
+
+function isCharAVowel(char){
+  const arr = ['a', 'e', 'i', 'o', 'u']
+
+  return arr.includes(char.toLowerCase())
+}
+
+console.log(isCharAVowel('e'))
+console.log(isCharAVowel('r'))
