@@ -27,6 +27,24 @@ function longestWord(sen) {
 
 console.log(longestWord("Hi there, my name is Cathy"))
 
+///////////////////////////////////////////////////////////////////////////
+//h. printLongestWord
+function printLongestWord(string) {
+  let str = string.split(" ");
+  let longest = 0;
+  let word = null;
+  for (let i = 0; i < str.length; i++) {
+    if (longest < str[i].length) {
+      longest = str[i].length;
+      word = str[i];
+    }
+  }
+  return word
+}
+console.log(printLongestWord(["BoJack", "Princess", "Diane", "a", "Max", "Peanutbutter", "big", "Todd"]));
+
+//////////////////////////////////////////////////////////////////////////////////
+
 // function longestWord(sen) {
 //
 //   sen = sen.replace(/\$|,/g, '')  //gets rid of non alphanumeric

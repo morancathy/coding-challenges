@@ -25,14 +25,14 @@ console.log(isAnagram('Dormitory', 'dirty room##'))     //false
 // Return true if anagram and false if not
 // ex. 'elbow' === 'below'
 // ex. 'Dormitory' === 'dirty room##'
-
-function isAnagram(str1, str2) {
-  return formatStr(str1) === formatStr(str2);
-}
+//
+// function isAnagram(str1, str2) {
+//   return formatStr(str1) === formatStr(str2);
+// }
 
     // .replace(/[^\w]/g, '')
      // sen = sen.replace(/\$|,/g, '')  //gets rid of non alphanumeric
-#############################################################################
+// #############################################################################
 console.log(`\nLETTER CHANGES`)
 // CHALLENGE 5: LETTER CHANGES
 // Change every letter of the string to the one that follows it and capitalize the vowels
