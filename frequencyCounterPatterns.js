@@ -34,6 +34,10 @@ console.log(same([1,2,1], [4,4,1, 4])) // false (must be same frequency)
 //////////////////////////////////////////////////////////////////////////
 function validAnagram(str1, str2){
     const charFrequency = {};
+
+    str1 = str1.replace(/\s+/g, ''); //Prevent spaces from ruining anagrams
+    str2 = str2.replace(/\s+/g, ''); //Prevent spaces from ruining anagrams
+
     for(let i = 0; i < str1.length; i++){
         charFrequency[str1[i]] = (charFrequency[str1[i]] || 0) + 1;
     }
