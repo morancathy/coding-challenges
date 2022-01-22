@@ -9,10 +9,7 @@ function same(arr1, arr2){
     let frequencyCounter2 = {}
 
     for(let val of arr1){
-        console.log("val", val)
        frequencyCounter1[val] = (frequencyCounter1[val] || 0) + 1;
-        console.log(frequencyCounter1)
-        console.log(frequencyCounter1[val])
     }
 
     for (let val of arr2) {
@@ -33,3 +30,30 @@ function same(arr1, arr2){
 console.log(same([1,2,3], [4,1,9])) // true
 console.log(same([1,2,3], [1,9])) // false
 console.log(same([1,2,1], [4,4,1, 4])) // false (must be same frequency)
+
+//////////////////////////////////////////////////////////////////////////
+function validAnagram(str1, str2){
+    const charFrequency = {};
+    for(let i = 0; i < str1.length; i++){
+        charFrequency[str1[i]] = (charFrequency[str1[i]] || 0) + 1;
+    }
+    for(let i = 0; i < str2.length; i++){
+        charFrequency[str2[i]] = (charFrequency[str2[i]] || 0) - 1;
+    }
+    for(let key in charFrequency){
+        if(charFrequency[key]){
+            return false;
+        }
+    }
+    return true;
+}
+
+console.log(validAnagram('', '')) // true
+console.log(validAnagram('aaz', 'zza')) // false
+console.log(validAnagram('anagram', 'nagaram')) // true
+console.log(validAnagram("rat","car")) // false
+console.log(validAnagram('awesome', 'awesom')) // false
+console.log(validAnagram('qwerty', 'qeywrt')) // true
+console.log(validAnagram('texttwisttime', 'timetwisttext')) // true
+
+/////////////////////////////////////////////////////////////////////
