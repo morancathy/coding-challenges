@@ -29,21 +29,31 @@ console.log(longestWord("Hi there, my name is Cathy"))
 
 ///////////////////////////////////////////////////////////////////////////
 //h. printLongestWord
-function printLongestWord(string) {
-  let str = string.split(" ");
-  let longest = 0;
-  let word = null;
-  for (let i = 0; i < str.length; i++) {
-    if (longest < str[i].length) {
-      longest = str[i].length;
-      word = str[i];
+function printLongestWord(array) {
+    let longest = ""
+    for (let string in array) {
+       if (array[string].length > longest.length) {
+        longest = array[string]
+      }
     }
-  }
-  return word
+    return longest
 }
 console.log(printLongestWord(["BoJack", "Princess", "Diane", "a", "Max", "Peanutbutter", "big", "Todd"]));
 
 //////////////////////////////////////////////////////////////////////////////////
+
+const longestStringInArray = (arr) => {
+  let biggest = 0
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].length >= biggest) {
+      biggest = arr[i].length
+    }
+  }
+  return biggest
+}
+console.log('Result of Problem 8: ', longestStringInArray(['Amazing', 'Fun', 'Hippopotamous']));
+////////////////////////////////////////////////////////////
+
 
 // function longestWord(sen) {
 //
@@ -131,7 +141,7 @@ const getTwoLengths = (arr) => {
   let biggest = 0
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].length >= biggest) {
-      biggest = arr[i].length 
+      biggest = arr[i].length
     }
   }
   return biggest
